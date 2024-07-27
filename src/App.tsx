@@ -1,7 +1,12 @@
+import StartScreen from './components/StartScreen';
+
 function App() {
+  function onStart() {
+    alert('Start Quiz');
+  }
   return (
     <>
-      <div>test</div>
+      <StartScreen onStart={onStart} />
     </>
   );
 }
