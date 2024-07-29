@@ -1,4 +1,4 @@
-import StartScreen from './components/StartScreen';
+import StartScreen from './components/StartScreen.tsx';
 
 function App() {
   function onStart() {
