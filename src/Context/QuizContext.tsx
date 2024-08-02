@@ -1,4 +1,4 @@
-import React from 'react';
+import { createContext } from 'react';
 
 type Screen = 'start' | 'quiz' | 'result' | 'review';
 
@@ -9,6 +9,8 @@ interface QuizContextType {
   setScore: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const QuizContext = React.createContext<QuizContextType | undefined>(
+export const QuizContext = createContext<QuizContextType | undefined>(
   undefined
-);
+); //createContext<QuizContextType | undefined>(undefined);
+
+export default QuizContext;
