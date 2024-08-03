@@ -1,14 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import StartScreen from './components/StartScreen.tsx';
 import { QuizContext } from './Context/QuizContext.tsx';
 function App() {
+  const { screen, setScreen } = useContext(QuizContext);
   console.clear;
   function handleStart() {
     setScreen('quiz');
   }
-  const [screen, setScreen] = useState<'start' | 'quiz' | 'result' | 'review'>(
-    'start'
-  );
+
   console.log(screen);
 
   return (
