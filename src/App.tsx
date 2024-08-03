@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import StartScreen from './components/StartScreen.tsx';
-
+import { QuizContext } from './Context/QuizContext.tsx';
 function App() {
   console.clear;
   function handleStart() {
