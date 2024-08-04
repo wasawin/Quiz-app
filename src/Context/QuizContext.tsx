@@ -19,7 +19,7 @@ interface QuizContextType {
   setShowScore: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const QuizProvider = ({ children }: QuizProviderProps) => {
+const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
   const [screen, setScreen] = useState<Screen>('start');
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import StartScreen from './components/StartScreen.tsx';
 import { QuizContext } from './Context/QuizContext.tsx';
 function App() {
@@ -13,7 +13,12 @@ function App() {
   return (
     <>
       <div className="min-h-screen bg-red-100 flex justify-center items-center">
-        {screen && <StartScreen onStart={handleStart} />}
+        {screen && (
+          <>
+            <StartScreen onStart={handleStart} />
+            typeScript {screen}
+          </>
+        )}
       </div>
     </>
   );
