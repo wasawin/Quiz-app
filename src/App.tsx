@@ -2,14 +2,14 @@ import { useContext } from 'react';
 import StartScreen from './components/StartScreen.tsx';
 import { QuizContext } from './Context/QuizContext.tsx';
 import QuizScreen from './components/QuizScreen.tsx';
+import ResultScreen from './components/ResultScreen.tsx';
 function App() {
-  const { screen, setScreen } = useContext(QuizContext);
+  const { screen, setScreen, shuffledQuestions } = useContext(QuizContext);
   console.clear;
   function handleStart() {
+    shuffledQuestions();
     setScreen('quiz');
   }
-
-  // console.log(screen);
 
   return (
     <>
@@ -20,6 +20,7 @@ function App() {
           </>
         )}
         {screen === 'quiz' && <QuizScreen />}
+        {screen === 'result' && <ResultScreen />}
       </div>
     </>
   );

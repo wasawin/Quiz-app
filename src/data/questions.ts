@@ -5,7 +5,7 @@ export const questions: Question[] = [
     id: 1,
     text: 'TypeScript เป็นซุปเปอร์เซ็ตของภาษาใด?',
     options: ['Java', 'C++', 'JavaScript', 'Python'],
-    correctAnswer: 3,
+    correctAnswer: 2,
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ export const questions: Question[] = [
   {
     id: 3,
     text: 'React เป็นอะไรบ้าง?',
-    options: ['Framework', 'Library', 'Framework', 'Framework'],
-    correctAnswer: 2,
+    options: ['Framework', 'Library', 'Tools', 'Database'],
+    correctAnswer: 1,
   },
 ];

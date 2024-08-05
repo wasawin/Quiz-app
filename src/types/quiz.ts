@@ -6,7 +6,7 @@ export interface Question {
 }
 
 export interface QuizState {
-  currentQuestion: number;
+  currentQuestionIndex: number;
   answers: number[];
   score: number;
 }
