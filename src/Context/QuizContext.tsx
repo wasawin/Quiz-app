@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { Question } from '../types/quiz';
+import { Question, QuizState } from '../types/quiz';
 import { questions as questionsSet } from '../data/questions';
 const QuizContext = createContext<QuizContextType>({} as QuizContextType);
 interface QuizProviderProps {
@@ -15,8 +15,8 @@ interface QuizContextType {
   setQuestions: React.Dispatch<React.SetStateAction<Question[]>>;
   currentQuestionIndex: number;
   setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
-  showScore: boolean;
-  setShowScore: React.Dispatch<React.SetStateAction<boolean>>;
+  answers: QuizState[];
+  setAnswers: React.Dispatch<React.SetStateAction<QuizState[]>>;
   shuffledQuestions: () => void;
 }
 
@@ -25,7 +25,7 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
   const [questions, setQuestions] = useState<Question[]>(questionsSet);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const [showScore, setShowScore] = useState(false);
+  const [answers, setAnswers] = useState<QuizState[]>([]);
 
   function shuffledQuestions() {
     const shuffled = questions.sort(() => Math.random() - 0.5);
@@ -45,8 +45,8 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
         setCurrentQuestionIndex,
         score,
         setScore,
-        showScore,
-        setShowScore,
+        answers,
+        setAnswers,
         shuffledQuestions,
       }}
     >

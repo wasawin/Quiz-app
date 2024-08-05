@@ -7,6 +7,6 @@ export interface Question {
 
 export interface QuizState {
   currentQuestionIndex: number;
-  answers: number[];
-  score: number;
+  selectedOption: number | null;
+  correctAnswer: number;
 }

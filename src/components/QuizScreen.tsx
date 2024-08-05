@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { QuizContext } from '../Context/QuizContext.tsx';
+import { QuizState } from '../types/quiz.ts';
 // import { questions } from '../data/questions.ts';
 
 function QuizScreen() {
@@ -10,10 +11,21 @@ function QuizScreen() {
     setScreen,
     questions,
     setScore,
+    setAnswers,
   } = useContext(QuizContext);
 
   function handleNext() {
     const currentDoQuestion = questions[currentQuestionIndex];
+
+    setAnswers((prevAnswers) => {
+      const newAnswer: QuizState = {
+        currentQuestionIndex: currentDoQuestion.id,
+        selectedOption,
+        correctAnswer: currentDoQuestion.correctAnswer,
+      };
+      return [...prevAnswers, newAnswer];
+    });
+
     if (selectedOption === currentDoQuestion.correctAnswer) {
       setScore((prevScore) => {
         const newScore = prevScore + 1;
