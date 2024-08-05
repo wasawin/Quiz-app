@@ -10,15 +10,12 @@ function ResultScreen() {
   }
   return (
     <>
-      <div>
-        Score : {score} of {questions.length}
+      <div className="text-center space-y-4">
+        <p>
+          Score : {score} of {questions.length}
+        </p>
+        <Button onClick={handleReview}>Review</Button>
       </div>
-      {/* <button
-        onClick={handleReview}
-      >
-        Review
-      </button> */}
-      <Button onClick={handleReview}>Review</Button>
     </>
   );
 }

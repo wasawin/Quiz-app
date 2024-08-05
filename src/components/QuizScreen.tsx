@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { QuizContext } from '../Context/QuizContext.tsx';
 import { QuizState } from '../types/quiz.ts';
+import Button from './Button.tsx';
 // import { questions } from '../data/questions.ts';
 
 function QuizScreen() {
@@ -11,7 +12,9 @@ function QuizScreen() {
     setScreen,
     questions,
     setScore,
+    answers,
     setAnswers,
+    score,
   } = useContext(QuizContext);
 
   function handleNext() {
@@ -27,10 +30,19 @@ function QuizScreen() {
     });
 
     if (selectedOption === currentDoQuestion.correctAnswer) {
-      setScore((prevScore) => {
-        const newScore = prevScore + 1;
-        return newScore;
-      });
+      if (
+        !answers[currentQuestionIndex] ||
+        answers[currentQuestionIndex].selectedOption !==
+          currentDoQuestion.correctAnswer
+      ) {
+        setScore((prevScore) => prevScore + 1);
+      }
+    } else if (
+      answers[currentQuestionIndex] &&
+      answers[currentQuestionIndex].selectedOption ===
+        currentDoQuestion.correctAnswer
+    ) {
+      setScore((prevScore) => prevScore - 1);
     }
 
     if (currentQuestionIndex < questions.length - 1) {
@@ -41,9 +53,20 @@ function QuizScreen() {
     }
   }
 
+  function handlePrev() {
+    currentQuestionIndex > 0 &&
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+  }
+  // setSelectedOption history;
+  useEffect(() => {
+    answers[currentQuestionIndex] &&
+      setSelectedOption(answers[currentQuestionIndex].selectedOption);
+  }, [currentQuestionIndex, answers]);
+
   useEffect(() => {
     console.log('chack questions', questions[currentQuestionIndex]);
-  }, [currentQuestionIndex, questions]);
+    console.log('score', score);
+  }, [currentQuestionIndex, score, questions]);
 
   function handleAnswer(answer: number) {
     setSelectedOption(answer);
@@ -80,13 +103,14 @@ function QuizScreen() {
           </li>
         ))}
       </ul>
-
-      <button
-        onClick={handleNext}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Next
-      </button>
+      <div className="flex space-x-4">
+        <Button onClick={handlePrev} disabled={currentQuestionIndex === 0}>
+          Previous
+        </Button>
+        <Button onClick={handleNext} disabled={selectedOption === null}>
+          Next
+        </Button>
+      </div>
     </div>
   );
 }
