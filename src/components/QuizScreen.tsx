@@ -38,6 +38,7 @@ function QuizScreen() {
         setScore((prevScore) => prevScore + 1);
       }
     } else if (
+      selectedOption !== currentDoQuestion.correctAnswer &&
       answers[currentQuestionIndex] &&
       answers[currentQuestionIndex].selectedOption ===
         currentDoQuestion.correctAnswer
@@ -59,8 +60,9 @@ function QuizScreen() {
   }
   // setSelectedOption history;
   useEffect(() => {
-    answers[currentQuestionIndex] &&
-      setSelectedOption(answers[currentQuestionIndex].selectedOption);
+    answers[currentQuestionIndex]
+      ? setSelectedOption(answers[currentQuestionIndex].selectedOption)
+      : setSelectedOption(null);
   }, [currentQuestionIndex, answers]);
 
   useEffect(() => {
