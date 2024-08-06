@@ -19,4 +19,15 @@ export const questions: Question[] = [
     options: ['Framework', 'Library', 'Tools', 'Database'],
     correctAnswer: 1,
   },
+  {
+    id: 4,
+    text: 'CSS ย่อมาจากอะไร?',
+    options: [
+      'Computer Style Sheets',
+      'Creative Style Sheets',
+      'Cascading Style Sheets',
+      'Colorful Style Sheets',
+    ],
+    correctAnswer: 2,
+  },
 ];

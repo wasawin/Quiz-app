@@ -18,34 +18,41 @@ function QuizScreen() {
   } = useContext(QuizContext);
 
   function handleNext() {
-    const currentDoQuestion = questions[currentQuestionIndex];
+    const currentQuestion = questions[currentQuestionIndex];
 
+    //update answer
     setAnswers((prevAnswers) => {
-      const newAnswer: QuizState = {
-        currentQuestionIndex: currentDoQuestion.id,
+      const updatedAnswers: QuizState[] = [...prevAnswers];
+      updatedAnswers[currentQuestionIndex] = {
+        currentQuestionIndex: currentQuestion.id,
         selectedOption,
-        correctAnswer: currentDoQuestion.correctAnswer,
+        correctAnswer: currentQuestion.correctAnswer,
       };
-      return [...prevAnswers, newAnswer];
+      return updatedAnswers;
     });
 
-    if (selectedOption === currentDoQuestion.correctAnswer) {
+    //check selected option is correct
+    if (selectedOption === currentQuestion.correctAnswer) {
+      // check answer empty or answer history is wrong to change score +1
       if (
         !answers[currentQuestionIndex] ||
         answers[currentQuestionIndex].selectedOption !==
-          currentDoQuestion.correctAnswer
+          currentQuestion.correctAnswer
       ) {
         setScore((prevScore) => prevScore + 1);
       }
+
+      // check answer is wrong and  check answer history is correct to change score -1
     } else if (
-      selectedOption !== currentDoQuestion.correctAnswer &&
+      selectedOption !== currentQuestion.correctAnswer &&
       answers[currentQuestionIndex] &&
       answers[currentQuestionIndex].selectedOption ===
-        currentDoQuestion.correctAnswer
+        currentQuestion.correctAnswer
     ) {
       setScore((prevScore) => prevScore - 1);
     }
 
+    //check last question
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedOption(null);
@@ -75,7 +82,7 @@ function QuizScreen() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-4 justify-center py-6 w-2/3 bg-gray-100">
+    <div className="flex flex-col items-center gap-4 justify-center py-6 px-4 w-full md:w-3/4 lg:w-2/4 bg-gray-100">
       <div className="text-center">
         <h1>Quiz</h1>
         <p>
@@ -84,7 +91,7 @@ function QuizScreen() {
       </div>
 
       <p>{questions[currentQuestionIndex].text}</p>
-      <ul className="space-y-2">
+      <ul className="grid grid-cols-1 md:gr3d4cols-2 gap-4 w-full max-w-xl mx-auto mt-4">
         {questions[currentQuestionIndex].options.map((option, index) => (
           <li key={index}>
             <label
@@ -105,7 +112,7 @@ function QuizScreen() {
           </li>
         ))}
       </ul>
-      <div className="flex space-x-4">
+      <div className="grid  grid-cols-2 w-full gap-2">
         <Button onClick={handlePrev} disabled={currentQuestionIndex === 0}>
           Previous
         </Button>
