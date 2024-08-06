@@ -1,2 +1,2 @@
 # DEMO 
-[LINK]([https://pokemon-rust-xi.vercel.app/](https://quiz-app-murex-nine.vercel.app/))
+[LINK](https://quiz-app-wasawins-projects.vercel.app/)
