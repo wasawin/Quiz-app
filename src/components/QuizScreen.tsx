@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from 'react';
 import { QuizContext } from '../Context/QuizContext.tsx';
 import { QuizState } from '../types/quiz.ts';
 import Button from './Button.tsx';
-// import { questions } from '../data/questions.ts';
 
 function QuizScreen() {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);

@@ -5,7 +5,7 @@ const QuizContext = createContext<QuizContextType>({} as QuizContextType);
 interface QuizProviderProps {
   children: React.ReactNode;
 }
-type Screen = 'start' | 'quiz' | 'result' | 'review';
+type Screen = 'start' | 'quiz' | 'result';
 interface QuizContextType {
   screen: Screen;
   setScreen: React.Dispatch<React.SetStateAction<Screen>>;
@@ -27,14 +27,15 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
   const [score, setScore] = useState(0);
   const [answers, setAnswers] = useState<QuizState[]>([]);
 
-  function shuffledQuestions() {
+  function settingQuestion() {
     const shuffled = questions.sort(() => Math.random() - 0.5);
     setScore(0);
-
+    setAnswers([]);
+    setCurrentQuestionIndex(0);
     setQuestions(shuffled);
   }
   function handleStart() {
-    shuffledQuestions();
+    settingQuestion();
     setScreen('quiz');
   }
   return (

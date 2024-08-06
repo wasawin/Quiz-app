@@ -30,4 +30,32 @@ export const questions: Question[] = [
     ],
     correctAnswer: 2,
   },
+  {
+    id: 5,
+    text: 'HTML ย่อมาจากอะไร?',
+    options: [
+      'Hyper Text Preprocessor',
+      'Hyper Text Markup Language',
+      'Hyper Text Multiple Language',
+      'Hyper Tool Multi Language',
+    ],
+    correctAnswer: 1,
+  },
+  {
+    id: 6,
+    text: 'JavaScript ย่อมาจากอะไร?',
+    options: ['Jews Script', 'Jamaica Script', 'Jordan Script', 'Java Script'],
+    correctAnswer: 3,
+  },
+  {
+    id: 7,
+    text: 'PHP ย่อมาจากอะไร?',
+    options: [
+      'Hypertext Preprocessor',
+      'Hypertext Programming',
+      'Hypertext Preprogramming',
+      'Hometext Preprocessor',
+    ],
+    correctAnswer: 2,
+  },
 ];
