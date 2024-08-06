@@ -5,19 +5,15 @@ import QuizScreen from './components/QuizScreen.tsx';
 import ResultScreen from './components/ResultScreen.tsx';
 import ReviewScreen from './components/ReviewScreen.tsx';
 function App() {
-  const { screen, setScreen, shuffledQuestions } = useContext(QuizContext);
+  const { screen } = useContext(QuizContext);
   console.clear;
-  function handleStart() {
-    shuffledQuestions();
-    setScreen('quiz');
-  }
 
   return (
     <>
       <div className="min-h-screen bg-red-100 flex justify-center items-center">
         {screen === 'start' && (
           <>
-            <StartScreen onStart={handleStart} />
+            <StartScreen />
           </>
         )}
         {screen === 'quiz' && <QuizScreen />}

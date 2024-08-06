@@ -17,7 +17,7 @@ interface QuizContextType {
   setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
   answers: QuizState[];
   setAnswers: React.Dispatch<React.SetStateAction<QuizState[]>>;
-  shuffledQuestions: () => void;
+  handleStart: () => void;
 }
 
 const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
@@ -33,7 +33,10 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
 
     setQuestions(shuffled);
   }
-
+  function handleStart() {
+    shuffledQuestions();
+    setScreen('quiz');
+  }
   return (
     <QuizContext.Provider
       value={{
@@ -47,7 +50,7 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
         setScore,
         answers,
         setAnswers,
-        shuffledQuestions,
+        handleStart,
       }}
     >
       {children}

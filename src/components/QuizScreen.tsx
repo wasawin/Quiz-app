@@ -82,7 +82,7 @@ function QuizScreen() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-4 justify-center py-6 px-4 w-full md:w-3/4 lg:w-2/4 bg-gray-100">
+    <div className="flex flex-col items-center gap-4 justify-center py-6 px-4 w-full sm:w-3/4 max-w-3xl  bg-gray-100">
       <div className="text-center">
         <h1>Quiz</h1>
         <p>
@@ -91,7 +91,8 @@ function QuizScreen() {
       </div>
 
       <p>{questions[currentQuestionIndex].text}</p>
-      <ul className="grid grid-cols-1 md:gr3d4cols-2 gap-4 w-full max-w-xl mx-auto mt-4">
+
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mt-4">
         {questions[currentQuestionIndex].options.map((option, index) => (
           <li key={index}>
             <label
@@ -112,7 +113,7 @@ function QuizScreen() {
           </li>
         ))}
       </ul>
-      <div className="grid  grid-cols-2 w-full gap-2">
+      <div className="flex w-full gap-4 md:gap-2 min-h-12 justify-center">
         <Button onClick={handlePrev} disabled={currentQuestionIndex === 0}>
           Previous
         </Button>

@@ -9,7 +9,7 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, disabled }) => {
   return (
     <>
       <button
-        className="disabled:opacity-0 text-center w-full
+        className="disabled:hidden text-center w-full
         inline-block rounded border border-indigo-600 bg-indigo-600 
         p-3 text-sm font-medium text-white 
         hover:bg-transparent hover:text-indigo-600 
