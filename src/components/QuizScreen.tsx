@@ -13,7 +13,6 @@ function QuizScreen() {
     setScore,
     answers,
     setAnswers,
-    score,
   } = useContext(QuizContext);
 
   function handleNext() {
@@ -71,32 +70,32 @@ function QuizScreen() {
       : setSelectedOption(null);
   }, [currentQuestionIndex, answers]);
 
-  useEffect(() => {
-    console.log('chack questions', questions[currentQuestionIndex]);
-    console.log('score', score);
-  }, [currentQuestionIndex, score, questions]);
-
   function handleAnswer(answer: number) {
     setSelectedOption(answer);
   }
 
   return (
-    <div className="flex flex-col items-center gap-4 justify-center py-6 px-4 w-full sm:w-3/4 max-w-3xl  bg-gray-100">
-      <div className="text-center">
-        <h1>Quiz</h1>
+    <div className="flex flex-col items-center gap-4 justify-center py-6 px-4 w-full lg:w-3/4 max-w-3xl  bg-gray-100 rounded-xl border-2 border-blue-400">
+      <div className="text-end ms-auto">
         <p>
-          Question {currentQuestionIndex + 1} of {questions.length}
+          {currentQuestionIndex + 1} / {questions.length}
         </p>
       </div>
 
-      <p>{questions[currentQuestionIndex].text}</p>
+      <strong className="text-lg bg-slate-500/50 p-4 w-full rounded-lg text-pretty">
+        {questions[currentQuestionIndex].text}
+      </strong>
+
+      <span className="h-px w-full bg-black"></span>
 
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mt-4">
         {questions[currentQuestionIndex].options.map((option, index) => (
           <li key={index}>
             <label
               htmlFor={option}
-              className=" flex cursor-pointer  rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500"
+              className=" flex cursor-pointer  
+              min-h-20 items-center justify-start
+              rounded-xl border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-800 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500"
             >
               <input
                 type="radio"
@@ -107,7 +106,7 @@ function QuizScreen() {
                 onChange={() => handleAnswer(index)}
                 className="sr-only"
               />
-              <p className="text-gray-700">{option}</p>
+              <p className="text-gray-700 text-pretty ">{option}</p>
             </label>
           </li>
         ))}
