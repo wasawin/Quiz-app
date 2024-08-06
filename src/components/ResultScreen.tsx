@@ -18,7 +18,10 @@ function ResultScreen() {
             Result Score: {score}/{questions.length}
           </h1>
         </div>
-        <details className="open:bg-white  open:ring-1 open:ring-black/5 open:shadow-lg rounded-lg">
+        <details
+          className="open:bg-white  open:ring-1 open:ring-black/5 open:shadow-lg rounded-lg"
+          open
+        >
           <summary className="bg-white p-4 rounded-md">
             Answer the question
           </summary>
@@ -40,20 +43,27 @@ function ResultScreen() {
                 {question.options.map((option, optionIndex) => (
                   <div
                     key={optionIndex}
-                    className={`${
-                      (question.correctAnswer ===
-                        answers[index]?.selectedOption &&
-                        optionIndex === question.correctAnswer &&
-                        'bg-green-500/50') ||
-                      (question.correctAnswer === optionIndex &&
-                        'bg-green-500/50')
-                    }
-                  ${
-                    answers[index]?.selectedOption === optionIndex &&
-                    question.correctAnswer !== answers[index]?.selectedOption &&
-                    'bg-red-600/50'
-                  } 
-                  flex justify-start items-center  min-h-20 rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm `}
+                    className={`flex justify-start items-center  min-h-20 rounded-lg border border-gray-300  p-4 text-sm font-medium shadow-sm
+                      ${
+                        question.correctAnswer ===
+                          answers[index]?.selectedOption &&
+                        optionIndex === question.correctAnswer
+                          ? 'bg-green-500/50'
+                          : ''
+                      }
+                        ${
+                          question.correctAnswer === optionIndex
+                            ? 'bg-green-500/50'
+                            : ''
+                        }
+                        ${
+                          answers[index]?.selectedOption === optionIndex &&
+                          question.correctAnswer !==
+                            answers[index]?.selectedOption
+                            ? 'bg-red-600/50'
+                            : ''
+                        }
+                      `}
                   >
                     {option}{' '}
                   </div>
